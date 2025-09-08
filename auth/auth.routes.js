@@ -1,14 +1,13 @@
 // Define URL atau endpoint auth
 
 const express = require("express");
-const { PrismaClient } = require("@prisma/client");
+const { prisma } = require('../prisma/prismaClient')
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { z } = require("zod");
 const { requireAuth } = require("./auth.middleware");
 require("dotenv").config();
 
-const prisma = new PrismaClient();
 const router = express.Router();
 
 const loginSchema = z.object({

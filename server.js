@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 const { authRouter } = require('./auth/auth.routes');
+const { userRouter } = require('./user/user.routes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.json());
 
 app.get('/health', (_req, res) => res.json({ ok: true, env: process.env.NODE_ENV || 'dev' }));
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/user', userRouter)
 
 // 404 & error handler
 app.use((_req, res) => res.status(404).json({ message: 'Not Found' }));
